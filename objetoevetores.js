@@ -39,6 +39,12 @@ const alunos = [
     }
 ]
 
+
+const nomesDeAlunos = ["Mayk", "Diego", "Fulano"]
+
+console.log(nomesDeAlunos)
+
 const media = (alunos[0].nota + alunos[1].nota + alunos[2].nota) / 3
 
 console.log(media)
+console.log(alunos)
