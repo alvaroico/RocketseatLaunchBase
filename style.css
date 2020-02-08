@@ -28,3 +28,14 @@ header div a:hover{
     color: #50fa7b;
     transition: color 700ms;
 }
+#wrapper {
+    text-align: center;
+    padding: 32px;
+}
+
+#wrapper img {
+   /* border-radius: 200px 50px 10px 10px;*/
+   border-radius: 50%;
+   border: 5px solid #50fa70;
+   margin-bottom: 32px;
+}
