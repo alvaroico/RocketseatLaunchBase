@@ -1,7 +1,11 @@
 /* 
+Criar o pacote Json
 npm init -y
-npm install express
 
+Criar servidor
+npm install express
+Automatiza servidor
+npm install -D nodemon
 
 
 
