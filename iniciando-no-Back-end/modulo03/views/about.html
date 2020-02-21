@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
 
-<head>
-    <title> Alvaro Pereira</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
 
-<body>
-    <header>
-        <div class="links">
-            <a href="/">Sobre</a>
-            <a href="/portfolio">Aulas</a>
-        </div>
-    </header>
+{% block head %}
+<title> Sobre Alvaro Pereira</title>
+{% endblock %}
+
+{% block content %}
 
     <div id="wrapper">
         <img src="https://avatars0.githubusercontent.com/u/59286021?v=4" alt="Alvaroico">
@@ -27,6 +20,4 @@
         <a href="https://www.linkedin.com/in/alvaroico/" target="_blank">Linkedin</a>
     </div>
 
-</body>
-
-</html>
+    {% endblock %}

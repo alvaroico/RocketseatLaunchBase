@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
 
-<head>
-    <title> Alvaro Pereira</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+{% block head %}
 
-<body>
-    <header>
-        <div class="links">
-            <a href="/"">Sobre</a>
-            <a href="/portfolio">Aulas</a>
-        </div>
-    </header>
+<title> Alvaro Pereira</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
+
+{% endblock %}
+
+
+{% block content %}
 
     <div id="wrapper">
         <h1>Aulas</h1>
@@ -116,6 +112,4 @@
    
     <script src="scripts.js"></script>
 
-</body>
-
-</html>
+    {% endblock %}
