@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout.njk" %}
 
 {% block head %}
 
@@ -17,84 +17,21 @@ rel="stylesheet">
     
     <section class="cards">
 
-        <div class="card" id="H4CCPaYLTWg">
+        {% for item in items %}
+
+        <div class="card" id="{{item.id}}">
             <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/H4CCPaYLTWg/hqdefault.jpg"Video Teste">
+                <img src="https://img.youtube.com/vi/{{item.id}}/hqdefault.jpg" alt="Imagem de {{item.title}}">
             </div>
             <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
+                <p>{{item.title}}</p>
             </div>
             <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
+                <p>{{item.duration}}</p>
+                <p class="card_price">{{item.price}}</p>
             </div>
         </div>
-
-        <div class="card" id="GGyp_XPhEGo">
-            <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/GGyp_XPhEGo/hqdefault.jpg"Video Teste">
-            </div>
-            <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
-            </div>
-            <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
-            </div>
-        </div>
-
-        <div class="card" id="3yJuOq9Bj-k">
-            <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/3yJuOq9Bj-k/hqdefault.jpg"Video Teste">
-            </div>
-            <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
-            </div>
-            <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
-            </div>
-        </div>
-
-        <div class="card" id="A6LP_czEK7U">
-            <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/A6LP_czEK7U/hqdefault.jpg"Video Teste">
-            </div>
-            <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
-            </div>
-            <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
-            </div>
-        </div>
-
-        <div class="card" id="Dh5TFPuJXKw">
-            <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/Dh5TFPuJXKw/hqdefault.jpg"Video Teste">
-            </div>
-            <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
-            </div>
-            <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
-            </div>
-        </div>
-
-        <div class="card" id="iUzxPkr1cWA">
-            <div class="card_imag-container">
-                <img src="https://img.youtube.com/vi/iUzxPkr1cWA/hqdefault.jpg"Video Teste">
-            </div>
-            <div class="card_content">
-                <p>Formulario Animado com JS puro e CSS Alvaroico</p>
-            </div>
-            <div class="card_infor">
-                <p>57 minutos</p>
-                <p class="card_price">Free</p>
-            </div>
-        </div>
-
+        {% endfor %}}
     </section>
 
     <div class="modal-overlay">
