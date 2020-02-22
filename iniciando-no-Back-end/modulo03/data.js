@@ -3,7 +3,8 @@ module.exports = [
         id: "H4CCPaYLTWg",
         title: "1 Formulario Animado com JS puro e CSS Alvaroico",
         duration: "12 minutos",
-        price: "Free"
+        price: "Free",
+        featured: true
     },
     {
         id: "GGyp_XPhEGo",
@@ -21,7 +22,8 @@ module.exports = [
         id: "A6LP_czEK7U",
         title: "4 Formulario Animado com JS puro e CSS Alvaroico",
         duration: "22 minutos",
-        price: "Free"
+        price: "Free",
+        featured: true
     },
     {
         id: "Dh5TFPuJXKw",
@@ -33,6 +35,7 @@ module.exports = [
         id: "iUzxPkr1cWA",
         title: "6 The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 fromo e CSS Alvaroico",
         duration: "57 minutos",
-        price: "Free"
+        price: "Free",
+        featured: true
     }
 ]
