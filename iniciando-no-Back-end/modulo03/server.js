@@ -13,7 +13,21 @@ nunjucks.configure("views", {
 })
 
 server.get("/", function(req, res){
-return res.render("about")
+    const about = {
+        avatar_url: "https://avatars0.githubusercontent.com/u/59286021?v=4",
+        name: "Alvaro Ribeiro Pereira",
+        role: "Estudante - Rocketseat",
+        description: 'Programador Full-stack orem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, ',
+        links: [
+            { name: "GitHub", url: "https://github.com/alvaroico"},
+            { name: "Twitter", url: "https://twitter.com/alvaroico"},
+            { name: "Linkedin", url: "https://www.linkedin.com/in/alvaroico/"}
+        ]
+    }
+
+
+
+return res.render("about", { about: about})
 
 })
 
