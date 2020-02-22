@@ -88,6 +88,7 @@ header {
 
 .card{
     background-color: var(--color-rocket);
+    display: grid;
 }
 
 .card_imag-container img {
@@ -102,6 +103,7 @@ header {
 .card_infor{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .card_price{
