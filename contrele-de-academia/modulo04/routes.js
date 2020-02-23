@@ -12,12 +12,14 @@ routes.get('/instructors/create', function(reg, res){
     return res.render('instructors/create')
 })
 
-routes.post("/instructors", function(rec, res){
-    return res.send("recebido")
+routes.post("/instructors", function(req, res){
+    //req.query
+    // req.body
+    return res.send(req.body)
 })
 
 routes.get('/members', function(req, res){
-    return res.send("members")
+    return res.send("merembers")
 })
 
 module.exports = routes
