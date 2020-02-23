@@ -7,6 +7,15 @@ routes.get('/', function(req, res){
 routes.get('/instructors', function(req, res){
     return res.render("instructors/index")
 })
+
+routes.get('/instructors/create', function(reg, res){
+    return res.render('instructors/create')
+})
+
+routes.post("/instructors", function(rec, res){
+    return res.send("recebido")
+})
+
 routes.get('/members', function(req, res){
     return res.send("members")
 })
