@@ -13,7 +13,10 @@ routes.get('/instructors/create', function(reg, res){
     return res.render('instructors/create')
 })
 
-routes.post("/instructors", instructors.post)
+routes.get('/instructors/:id', instructors.show)
+
+
+routes.post('/instructors', instructors.post)
 
 routes.get('/members', function(req, res){
     return res.send("merembers")
