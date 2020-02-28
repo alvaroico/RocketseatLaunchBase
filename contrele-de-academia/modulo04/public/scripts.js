@@ -22,4 +22,6 @@ document.querySelector(".clouse-modal").addEventListener("click", function(){
 
 })
 
+ok
+
 
