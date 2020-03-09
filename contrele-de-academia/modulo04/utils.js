@@ -16,6 +16,15 @@ module.exports = {
     },
     date: function(timestamp){
         const date = new Date(timestamp)
+
+        // yyyy ano
+        const year = date.getUTCFullYear()
+        // mm mes
+        const month = date.getUTCMonth() + 1
+        // dd dia
+        const day = date.getUTCDate()
+        
+        return `${year}-${month}-${day}`
         
     }
 
