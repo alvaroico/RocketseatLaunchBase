@@ -2,6 +2,15 @@ const fs = require ("fs")
 const data = require("./data.json")
 const { age, date } = require("./utils")
 
+
+exports.index = function(req, res){
+    //console.log(data)
+    return res.render("instructors/index", { instructors: data.instructors })
+    
+}
+
+
+
 exports.show = function(req, res){
     
     const { id } = req.params
