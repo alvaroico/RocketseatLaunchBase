@@ -1,15 +1,6 @@
 {
   "instructors": [
     {
-      "id": 1,
-      "name": "sdfds fsdfsdfsd",
-      "avatar_url": "https://google.com.br",
-      "birth": 1582070400000,
-      "gender": "F",
-      "services": "dfsdsfds, dfsdfds",
-      "created_at": 1582762972655
-    },
-    {
       "id": 2,
       "name": "sdasad dasads",
       "avatar_url": "https://google.com.br",
