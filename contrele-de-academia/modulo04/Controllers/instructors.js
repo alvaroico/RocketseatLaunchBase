@@ -1,6 +1,6 @@
 const fs = require ("fs")
-const data = require("./data.json")
-const { age, date } = require("./utils")
+const data = require("../data.json")
+const { age, date } = require("../utils")
 
 
 exports.index = function(req, res){
@@ -8,8 +8,6 @@ exports.index = function(req, res){
     return res.render("instructors/index", { instructors: data.instructors })
     
 }
-
-
 
 exports.show = function(req, res){
     
@@ -23,9 +21,6 @@ exports.show = function(req, res){
 
     if (!foundInstructor) return res.send("Instructor não encontrado")
 
-    
-
-console.log(foundInstructor.birth)
     const instructor = {
         ...foundInstructor,
         age: age(foundInstructor.birth),
@@ -36,6 +31,10 @@ console.log(foundInstructor.birth)
   
     return res.render("instructors/show", { instructor})
 
+}
+
+exports.create = function(reg, res){
+    return res.render('instructors/create')
 }
 
 
@@ -78,7 +77,6 @@ exports.post = function(req, res){
    // return res.send(req.body)
 }
 
-// edit
 
 exports.edit = function(req, res){
 
@@ -101,7 +99,6 @@ exports.edit = function(req, res){
 
         return res.render('instructors/edit', { instructor })
 }
-// put
 
 exports.put = function(req, res) {
 
@@ -136,8 +133,6 @@ exports.put = function(req, res) {
     })
 
 }
-
-// delete
 
 exports.delete = function(req, res) {
     const { id } = req.body
