@@ -1,6 +1,6 @@
 const fs = require ("fs")
 const data = require("../data.json")
-const { age, date } = require("../utils")
+const { date } = require("../utils")
 
 
 exports.index = function(req, res){
@@ -26,7 +26,7 @@ exports.show = function(req, res){
 console.log(foundMember.birth)
     const member = {
         ...foundMember,
-        age: age(foundMember.birth)
+        birth: date(foundMember.birth).birthDay
     }
   
     return res.render("members/show", { member})
@@ -48,22 +48,19 @@ exports.post = function(req, res){
         }
     }
 
-    let {avatar_url, name, birth, gender, services} = req.body
+    birth = Date.parse(req.body.birth)
 
-    birth = Date.parse(birth)
-    const created_at = Date.now()
-    const id = Number(data.members.length + 1)
+    let id = 1
+    const lestMember = data.members[data.members.length - 1]
 
-    
+    if(lestMember){
+        id = lestMember.id + 1
+    }
 
     data.members.push({
+        ...req.body,
         id,
-        name, 
-        avatar_url, 
-        birth, 
-        gender, 
-        services, 
-        created_at, 
+        birth 
     })
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err){
@@ -90,7 +87,7 @@ exports.edit = function(req, res){
 
     const member = {
         ...foundMember,
-        birth: date(foundMember.birth)
+        birth: date(foundMember.birth).iso
     }
 
 
