@@ -1,0 +1,46 @@
+{
+  "members": [
+    {
+      "avatar_url": "https://images.unsplash.com/photo-1553531580-a000ac8df244?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+      "name": "Alvaro Membro",
+      "email": "asdladlsa@hotlaslsa.com",
+      "birth": 717292800000,
+      "gender": "M",
+      "blood": "AB+",
+      "weight": "80",
+      "height": "189",
+      "id": 1
+    },
+    {
+      "avatar_url": "https://images.unsplash.com/photo-1553531580-a000ac8df244?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+      "name": "Fernando ",
+      "email": "fernandosadasda@hotmail.com",
+      "birth": 946684800000,
+      "gender": "F",
+      "blood": "A-",
+      "weight": "65",
+      "height": "188",
+      "id": 2
+    }
+  ],
+  "instructors": [
+    {
+      "id": 2,
+      "name": "Alvaro Ribeiro Pereira",
+      "avatar_url": "https://images.unsplash.com/photo-1553531580-a000ac8df244?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+      "birth": 717033600000,
+      "gender": "M",
+      "services": "durmo, como, trabalho",
+      "created_at": 1582763015856
+    },
+    {
+      "id": 3,
+      "name": "Robison silva",
+      "avatar_url": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80",
+      "birth": -20563200000,
+      "gender": "M",
+      "services": "trabalha, treina, trabalha",
+      "created_at": 1582848344239
+    }
+  ]
+}
