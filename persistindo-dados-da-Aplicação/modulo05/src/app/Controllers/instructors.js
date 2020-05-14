@@ -1,4 +1,5 @@
 const { age, date } = require("../lib/utils")
+const db = require('../config/db')
 
 module.exports = {
 index(req, res){
@@ -13,8 +14,6 @@ create(req, res){
 
 },
 post(req, res){
- //req.query
-    // req.body
     const keys = Object.keys(req.body)
 
     for (key of keys){
@@ -23,32 +22,34 @@ post(req, res){
         }
     }
 
-    let {avatar_url, name, birth, gender, services} = req.body
+    const query = `
+        INSERT INTO instructors (
+            name,
+            avatar_url,
+            gender,
+            services,
+            birth,
+            created_at
+        ) VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING id
+    `
 
-    birth = Date.parse(birth)
-    const created_at = Date.now()
-    const id = Number(data.instructors.length + 1)
+    const values = [
+        req.body.name,
+        req.body.avatar_url,
+        req.body.gender,
+        req.body.services,
+        date(req.body.birth).iso,
+        date(Date.now()).iso
+    ]
 
-    
+    db.query(query, values, function(err, results){
+        if(err) return res.send("Erro banco de dados!")
 
-    data.instructors.push({
-        id,
-        name, 
-        avatar_url, 
-        birth, 
-        gender, 
-        services, 
-        created_at, 
+        return res.redirect(`/instructors/${results.rows[0].id}`)
+        
     })
 
-    fs.writeFile("data.json", JSON.stringify(data, null, 2), function (err){
-        if (err) return res.send("Erro ao gravar arquivo")
-
-        return res.redirect("/instructors")
-
-    })
-
-   // return res.send(req.body)
 },
 edit(req, res){
     return
