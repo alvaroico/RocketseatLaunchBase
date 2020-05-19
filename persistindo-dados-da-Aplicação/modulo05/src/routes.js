@@ -35,6 +35,6 @@ routes.post('/members', members.post)
 
 routes.put("/members", members.put)
 
-routes.delete("/instructores", members.delete)
+routes.delete("/members", members.delete)
 
 module.exports = routes
