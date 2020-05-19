@@ -5,7 +5,7 @@ const db = require('../config/db')
 module.exports = {
     all(callback){
         db.query(`select * from instructors`, function(err, results){
-            if(err) return res.send("Erro no banco de dados!")
+            if(err) throw "Erro no banco de dados!"
 
             callback(results.rows)
            })
@@ -36,7 +36,7 @@ module.exports = {
     ]
 
     db.query(query, values, function(err, results){
-        if(err) return res.send("Erro banco de dados!")
+        if(err)  throw "Erro no banco de dados!"
 
         callback(results.rows[0])
         
@@ -45,9 +45,36 @@ module.exports = {
     },
     find(id, callback){
         db.query('select * from instructors where id = $1', [id], function(err, results){
-            if(err) return res.send("Erro banco de dados!")
+            if(err)  throw `Erro no banco de dados! ${err}`
             callback(results.rows[0])
         })
+    },
+    update(data, callback){
+        const query = 
+        `
+    UPDATE instructors SET
+        avatar_url = ($1),
+        name = ($2),
+        birth = ($3),
+        gender = ($4),
+        services = ($5)
+     WHERE id = ($6)
+    `
+        const values = [
+            data.avatar_url,
+            data.name,
+            date(data.birth).iso,
+            data.gender,
+            data.services,
+            data.id
+        ]
+
+        db.query(query, values, function(err, results){
+            if(err) throw `Erro no banco de dados! ${err}`
+            callback()
+        })
+
+
     }
 }
 
