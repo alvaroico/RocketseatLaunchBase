@@ -1,4 +1,4 @@
-const { age, date } = require("../lib/utils")
+const { date } = require("../lib/utils")
 
 const db = require('../config/db')
 
@@ -42,6 +42,12 @@ module.exports = {
         
     })
 
+    },
+    find(id, callback){
+        db.query('select * from instructors where id = $1', [id], function(err, results){
+            if(err) return res.send("Erro banco de dados!")
+            callback(results.rows[0])
+        })
     }
 }
 
