@@ -50,7 +50,11 @@ module.exports = {
 
     },
     find(id, callback){
-        db.query('select * from members where id = $1', [id], function(err, results){
+        db.query(`
+        SELECT members.*, instructors.name AS instructor_name
+        from members 
+        LEFT JOIN instructors ON (members.instructor_id = instructors.id)
+        where members.id = $1`, [id], function(err, results){
             if(err)  throw `Erro no banco de dados! ${err}`
             callback(results.rows[0])
         })
