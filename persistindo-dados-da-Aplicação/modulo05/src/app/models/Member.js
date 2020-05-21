@@ -92,6 +92,12 @@ module.exports = {
 
             return callback()
         })
+    },
+    instructorsSelectOptions(callback){
+        db.query(`SELECT name, id FROM instructors`, function(err, results){
+            if (err) throw 'Erro no banco'
+            callback(results.rows)
+        })
     }
 }
 
