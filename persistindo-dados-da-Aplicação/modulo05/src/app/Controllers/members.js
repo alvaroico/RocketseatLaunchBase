@@ -20,7 +20,7 @@ module.exports = {
     },
     create(req, res){
         Member.instructorsSelectOptions(function(options){
-        return res.render('members/create', { instructoOptions: options})
+            return res.render('members/create', { instructoOptions: options})
         })
 
     
@@ -44,8 +44,10 @@ module.exports = {
             if (!member) return res.send("Member não encontrado!")
     
             member.birth = date(member.birth).iso
-          
-            return res.render("members/edit", { member})
+            Member.instructorsSelectOptions(function(options){
+                return res.render('members/edit', { member, instructoOptions: options})
+            })
+            
         })
     },
     put(req, res){
