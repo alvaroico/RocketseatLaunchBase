@@ -15,8 +15,6 @@ module.exports = {
             callback(results.rows)
            })
 
-           //parei aqui
-
     },
     create(data, callback){
         const query = `
@@ -53,6 +51,19 @@ module.exports = {
             if(err)  throw `Erro no banco de dados! ${err}`
             callback(results.rows[0])
         })
+    },
+    findBy(filter, callback){
+        db.query(`
+        SELECT instructors.*, count(members) as total_students
+        FROM instructors
+        LEFT JOIN members ON (instructors.id = members.instructor_id)
+        WHERE instructors.name ILIKE '%${filter}%'
+        GROUP BY instructors.id
+        ORDER BY total_students DESC`, function(err, results){
+            if(err) throw "Erro no banco de dados!"
+
+            callback(results.rows)
+           })
     },
     update(data, callback){
         const query = 
