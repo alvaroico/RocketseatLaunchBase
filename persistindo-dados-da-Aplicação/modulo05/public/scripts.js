@@ -12,7 +12,7 @@ for (item of menuItens){
 // selectedpage = 15
 // [1, ..., 13, 14, 15, 16, 17, ..., 20 ]
 
-function paginetion(selectedPage, totalPage){
+function paginate(selectedPage, totalPage){
 
 let pages = [],
 oldPage
@@ -40,5 +40,12 @@ oldPage
 
  console.log(pages)
 }
+
+const pagination = document.querySelector(".pagination")
+const page = +pagination.dataset.page;
+const total = +pagination.dataset.total;
+const pages = paginate(page, total)
+
+console.log(pages)
 
 

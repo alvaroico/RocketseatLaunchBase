@@ -20,7 +20,8 @@ index(req, res){
                 total: Math.ceil(instructors[0].total / limit),
                 page
             }
-            return res.render("instructors/index",{ instructors, paginate, filter})
+
+            return res.render("instructors/index", { instructors, pagination, filter})
         }
     }
 
