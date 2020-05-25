@@ -16,26 +16,17 @@ index(req, res){
         limit,
         offset,
         callback(instructors) {
-            return res.render("instructors/index",{ instructors, filter})
+            const pagination = {
+                filter,
+                total,
+                page
+            }
+            return res.render("instructors/index",{ instructors})
         }
     }
 
     Instructor.paginate(params)
 
-
-
-
-/*     if(filter){
-
-        Instructor.findBy(filter, function(instructors){
-            return res.render("instructors/index",{ instructors, filter})
-        })
-
-    } else {
-        Instructor.all(function(instructors){
-            return res.render("instructors/index",{ instructors})
-        })
-    }   */
 },
 show(req, res){
     Instructor.find(req.params.id, function(instructor){

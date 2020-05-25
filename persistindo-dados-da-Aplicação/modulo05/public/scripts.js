@@ -12,9 +12,9 @@ for (item of menuItens){
 // selectedpage = 15
 // [1, ..., 13, 14, 15, 16, 17, ..., 20 ]
 
-let totalPage = 20,
-selectedPage = 15,
-pages = [],
+function paginetion(selectedPage, totalPage){
+
+let pages = [],
 oldPage
 
  for (let currentPage = 1; currentPage <= totalPage; currentPage++) {
@@ -39,3 +39,6 @@ oldPage
  }
 
  console.log(pages)
+}
+
+
