@@ -17,11 +17,10 @@ index(req, res){
         offset,
         callback(instructors) {
             const pagination = {
-                filter,
-                total,
+                total: Math.ceil(instructors[0].total / limit),
                 page
             }
-            return res.render("instructors/index",{ instructors})
+            return res.render("instructors/index",{ instructors, paginate, filter})
         }
     }
 
