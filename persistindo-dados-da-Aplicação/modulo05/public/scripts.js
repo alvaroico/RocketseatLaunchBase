@@ -15,7 +15,7 @@ for (item of menuItens){
 function paginate(selectedPage, totalPage){
 
 let pages = [],
-oldPage
+    oldPage
 
  for (let currentPage = 1; currentPage <= totalPage; currentPage++) {
 
@@ -37,10 +37,10 @@ oldPage
          oldPage = currentPage
      }
  }
-
+ console.log(pages)
     return pages
 
- //console.log(pages)
+ 
 }
 
 const pagination = document.querySelector(".pagination")
