@@ -13,8 +13,10 @@ for (item of menuItens){
 // [1, ..., 13, 14, 15, 16, 17, ..., 20 ]
 
 let totalPage = 20,
-selectedPage = 15.
-pages = []
+selectedPage = 15,
+pages = [],
+oldPage
+
  for (let currentPage = 1; currentPage <= totalPage; currentPage++) {
 
     const firstAndLastPage = currentPage == 1 || currentPage == totalPage
@@ -22,7 +24,17 @@ pages = []
     const pagesBeforeSelectedPage = currentPage >= selectedPage - 2
 
      if(firstAndLastPage || pagesBeforeSelectedPage && pagesAfterSelectedPage){
+
+        if (oldPage && currentPage - oldPage > 2){
+            pages.push("...")
+        }
+
+        if (oldPage && currentPage - oldPage == 2){
+            pages.push(oldPage + 1)
+        }
          pages.push(currentPage)
+
+         oldPage = currentPage
      }
  }
 
