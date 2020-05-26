@@ -37,21 +37,17 @@ let pages = [],
          oldPage = currentPage
      }
  }
- console.log(pages)
     return pages
 
  
 }
 
-const pagination = document.querySelector(".pagination")
+function createPagination(pagination){
+    
 const filter = pagination.dataset.filter
 const page = +pagination.dataset.page
 const total = +pagination.dataset.total
 const pages = paginate(page, total)
-
-console.log(pages)
-console.log(page)
-console.log(total)
 
 
 let elements = ""
@@ -69,5 +65,14 @@ for (let page of pages){
 }
 
 pagination.innerHTML = elements
+
+}
+
+const pagination = document.querySelector(".pagination")
+
+
+if (pagination){
+    createPagination(pagination)
+}
 
 
