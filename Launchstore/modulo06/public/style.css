@@ -148,8 +148,8 @@ form .item > div:nth-child(1){
     margin-bottom: 8px;
 }
 
-form .item input [type="text"],
-form .item input [type="number"],
+form .item input[type="text"],
+form .item input[type="number"],
 form .item textarea,
 form .item select {
     width: 100%;
@@ -158,7 +158,7 @@ form .item select {
 
     box-shadow: 2px 2px 2px -4px rgba(63, 63, 63, .5);
 
-    boder: 1px solid #efefef;
+    border: 1px solid #efefef;
     border-radius: 4px;
 
     font-size: 16px;
