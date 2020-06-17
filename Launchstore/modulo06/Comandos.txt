@@ -1,0 +1,6 @@
+Start postgresql
+sudo service postgresql restart
+sudo su postgres -c psql postgres
+ALTER USER postgres PASSWORD '123456';ALTER ROLE""
+
+###############################
