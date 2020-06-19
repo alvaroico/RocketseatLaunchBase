@@ -20,96 +20,177 @@ input.addEventListener("keydown", function(e){
 // criando mascara de moeda
 const Mask = {
   apply(input, func) {
-    setTimeout(function () {
-      input.value = Mask[func](input.value);
-    }, 1);
+      setTimeout(() => {
+          input.value = Mask[func](input.value)
+      }, 1);
   },
-  formatBRL(value) {
-    value = value.replace(/\D/g, "");
-
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(value / 100);
+  formatBRL(value) {        
+      value = value.replace(/\D/g,"")
+      
+      return new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+      }).format(value/100)
   },
-};
+  cpfCnpj(value) {
+    value = value.replace(/\D/g,"")
+    
+    if(value.length > 14) value = value.slice(0, 14)
 
-const PhotosUploads = {
-  input: "",
-  preview: document.querySelector("#photos-preview"),
+    if(value.length > 11) {
+        value = value.replace(/(\d{2})(\d)/, "$1.$2")
+        
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        
+        value = value.replace(/(\d{3})(\d)/, "$1/$2")
+        
+        value = value.replace(/(\d{4})(\d)/, "$1-$2")            
+    } else {
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+        
+        value = value.replace(/(\d{3})(\d)/, "$1.$2")
+
+        value = value.replace(/(\d{3})(\d)/, "$1-$2")
+    }
+
+    return value
+},
+  cep(value) {
+    value = value.replace(/\D/g,"")
+    
+    if(value.length > 8) value = value.slice(0, 8)
+    
+    value = value.replace(/(\d{5})(\d)/, "$1-$2")          
+
+    return value
+}
+}
+
+const PhotosUpload = {
   uploadLimit: 6,
+  input: "",
   files: [],
-
+  preview: document.querySelector('#photos-preview'),
   handleFileInput(event) {
-    const { files: FileList } = event.target;
-    if (PhotosUploads.hasLimit(event)) return;
-
-    PhotosUploads.input = event.target
-
-    Array.from(FileList).forEach((file) => {
+      const { files: fileList } = event.target
+      PhotosUpload.input = event.target
       
-      PhotosUploads.files.push(file)
+      const photosHasId = []
+      Array.from(this.preview.childNodes).forEach(item => {
+          if(item.classList && item.classList.value == 'photo' && item.getAttribute('id')) {
+              const alt = item.querySelector('img').alt
+              const index = alt.indexOf('-')
+              photosHasId.push(alt.slice(index + 1))
+          }
+      })
+
+      if(PhotosUpload.hasLimit(event)) {
+          PhotosUpload.updateInputFiles()
+          return
+      }
+
+      Array.from(fileList).forEach(file => {
+          const alreadyHasImage = PhotosUpload.files.some(image => image.name == file.name)
+          const alreadyHadImage = photosHasId.some(name => name == file.name)
+
+          if(!alreadyHasImage && !alreadyHadImage) {
+              PhotosUpload.files.push(file)
+          } else {
+              alert(`Não envie fotos repetidas!`)
+              PhotosUpload.updateInputFiles()
+              event.preventDefault()
+              return
+          }
+          
+          const reader = new FileReader()
+          
+          reader.onload = () => {
+              const image = new Image()
+              image.src = String(reader.result)
+              
+              const div = PhotosUpload.getContainer(image)
+
+              PhotosUpload.preview.appendChild(div)
+          }
+          
+          reader.readAsDataURL(file)
+      })
       
-      const reader = new FileReader();
+      PhotosUpload.updateInputFiles()
+  },
+  getAllFiles() {
+      const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
 
-      reader.onload = () => {
-        const image = new Image();
-        image.src = String(reader.result);
-
-        const div = PhotosUploads.getContainer(image);
-
-        PhotosUploads.preview.appendChild(div);
-      };
-
-      reader.readAsDataURL(file);
-    });
-
-    PhotosUploads.input.file = PhotosUploads.getAllFiles()
+      PhotosUpload.files.forEach(file => dataTransfer.items.add(file))
+      return dataTransfer.files
   },
   hasLimit(event) {
-    const { uploadLimit, input: fileList } = PhotosUploads;
+      const { input, preview } = PhotosUpload
+      const { files: fileList } = input
+      
+      if (fileList.length > this.uploadLimit) {
+          alert(`Envie no máximo ${this.uploadLimit} fotos!`)
+          event.preventDefault()
+          return true
+      }
+      
+      const photosDiv = []
+      preview.childNodes.forEach(item => {
+          if(item.classList && item.classList.value == 'photo')
+              photosDiv.push(item)
+      })
 
-    if (fileList.length > uploadLimit) {
-      alert(`Envie no máximo ${uploadLimit} fotos`);
-      event.preventDefault();
-      return true;
-    }
-    return false;
-  },
-  getAllFiles(){
-    const dataTransfer = new ClipboardEvent("").clipboardData || new DataTransfer()
+      const totalPhotos = fileList.length + photosDiv.length
 
-    PhotosUploads.files.forEach(file => dataTransfer.items.add(file))
+      if(totalPhotos > this.uploadLimit) {
+          alert(`Você atingiu o máximo de ${this.uploadLimit} fotos!`)
+          event.preventDefault()
+          return true
+      }
 
-    return dataTransfer.files
-
+      return false
   },
   getContainer(image) {
-    const div = document.createElement("div");
-    div.classList.add("photo");
+      const div = document.createElement('div')
+      div.classList.add('photo')
 
-    div.onclick = PhotosUploads.removerPhoto;
+      div.onclick = PhotosUpload.removerPhoto
 
-    div.appendChild(image);
+      div.appendChild(image)
+      div.appendChild(PhotosUpload.getRemoveButton())
 
-    div.appendChild(PhotosUploads.getRemoverButton());
-
-    return div;
+      return div
   },
   getRemoverButton() {
-    const button = document.createElement("i");
-    button.classList.add("material-icons");
-    button.innerHTML = "close";
-    return button;
+      const button = document.createElement('i')
+      button.onclick = PhotosUpload.removePhoto
+      button.classList.add('material-icons')
+      button.innerHTML = 'close'
+      
+      return button
   },
   removerPhoto(event) {
-    const photoDiv = event.target.parentNode; // <div class="photo"
-    const photosArray = Array.from(PhotosUploads.preview.children);
-    const index = photosArray.indexOf(photoDiv);
+      const photoDiv = event.target.parentNode // <div class='photos'>
+      const newFiles = Array.from(PhotosUpload.preview.children).filter(file => {
+          if(file.classList.contains('photo') && !file.getAttribute('id')) return true
+      })
+      
+      const index = newFiles.indexOf(photoDiv)
+      PhotosUpload.files.splice(index, 1)
+      
+      PhotosUpload.updateInputFiles()
 
-    PhotosUploads.files.splice(index, 1)
-    PhotosUploads.input.file = PhotosUploads.getAllFiles()
-
-    photoDiv.remove();
+      photoDiv.remove()
   },
-};
+  updateInputFiles() {
+    PhotosUpload.input.files = PhotosUpload.getAllFiles()
+},
+  getRemoveButton() {
+  const button = document.createElement('i')
+  button.onclick = PhotosUpload.removePhoto
+  button.classList.add('material-icons')
+  button.innerHTML = 'close'
+  
+  return button
+},
+}
