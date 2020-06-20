@@ -64,4 +64,9 @@ module.exports = {
   delete(id){
     return db.query('DELETE FROM products WHERE id = $1', [id])
   },
+  files(id){
+    return db.query(`
+      SELECT * from FILES where PRODUCT_ID = $1
+    `, [id])
+  }
 };
