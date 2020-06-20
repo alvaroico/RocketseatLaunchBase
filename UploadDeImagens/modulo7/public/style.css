@@ -351,3 +351,10 @@ form .item #photos-preview img{
   .product-single .gallery img {
     width: 100%;
   }
+
+  /* produc single info */
+
+  .product-single .info {
+    display: grid;
+    grid-template-rows: auto 40px 2fr 1fr;
+  }
