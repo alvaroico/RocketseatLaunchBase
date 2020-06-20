@@ -6,5 +6,6 @@
     "onchange",
     "onclick",
     "onkeydown"
-  ]
+  ],
+  "editor.tabSize": 2
 }
