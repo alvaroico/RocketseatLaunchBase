@@ -5,7 +5,7 @@ const Product = require("../models/Product");
 const File = require("../models/Files");
 
 module.exports = {
-  create(req, res) {
+        create(req, res) {
     //Conhecendo promises
     // Pegar categoria
     Category.all()
@@ -40,7 +40,9 @@ module.exports = {
 
     return res.redirect(`products/${productId}/edit`);
   },
-
+        show(req, res){
+    return res.render("products/show")
+  },
   async edit(req, res) {
     let results = await Product.find(req.params.id);
     const product = results.rows[0]
@@ -113,5 +115,5 @@ module.exports = {
     await Product.delete(req.body.id)
     return res.redirect('/products/create')
 
-  },
+  }
 };
