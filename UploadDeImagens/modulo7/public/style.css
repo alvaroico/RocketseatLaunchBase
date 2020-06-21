@@ -387,7 +387,7 @@ form .item #photos-preview img{
       transition: 200ms;
   }
   .product-single .gallery-preview img:hover,
-  .product-single .gallery-preview img:active {
+  .product-single .gallery-preview img.active {
     opacity: 1;
   }
 
