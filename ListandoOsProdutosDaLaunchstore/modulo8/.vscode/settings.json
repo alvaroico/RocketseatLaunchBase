@@ -4,6 +4,7 @@
     "endfor",
     "launchstore",
     "lightbox",
+    "middlewares",
     "onchange",
     "onclick",
     "onkeydown"
