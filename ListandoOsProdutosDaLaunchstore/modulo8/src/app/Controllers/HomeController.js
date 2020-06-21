@@ -13,7 +13,6 @@ module.exports = {
       let results = await Product.files(productId)
       let files = results.rows.map(file =>`${req.protocol}://${req.headers.host}/${file.path.replace("public", "")}`)
 
-
       return files[0]
     }
 

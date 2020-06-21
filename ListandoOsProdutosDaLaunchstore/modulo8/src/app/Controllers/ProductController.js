@@ -60,7 +60,6 @@ module.exports = {
       ...file,
       src: `${req.protocol}://${req.headers.host}/${file.path.replace("public", "")}`
     }))
-
     return res.render("products/show", { product, files } )
   },
   async edit(req, res) {
