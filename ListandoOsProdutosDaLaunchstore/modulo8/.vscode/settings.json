@@ -3,6 +3,7 @@
     "browsersync",
     "endfor",
     "endmacro",
+    "ilike",
     "launchstore",
     "lightbox",
     "middlewares",
