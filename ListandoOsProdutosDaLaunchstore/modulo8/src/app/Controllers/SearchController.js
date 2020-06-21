@@ -26,7 +26,7 @@ module.exports = {
 
     const lastAdded = await Promise.all(productsPromise)
 
-    return res.render("home/index", { products: lastAdded })
+    return res.render("search/index", { products: lastAdded })
   }
 
 }
