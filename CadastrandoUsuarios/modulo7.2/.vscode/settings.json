@@ -11,6 +11,7 @@
     "onchange",
     "onclick",
     "onkeydown",
+    "postgres",
     "producst"
   ],
   "editor.tabSize": 2
