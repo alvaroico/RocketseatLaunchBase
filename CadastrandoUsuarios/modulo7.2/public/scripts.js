@@ -1,23 +1,3 @@
-/*
-// format moeda
-const input = document.querySelector('input[name="price"]')
-input.addEventListener("keydown", function(e){
-   setTimeout(function(){
-    let { value } = e.target
-
-    value = value.replace(/\D/g,"")
-
-    value = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(value/100)
-  
-    e.target.value = value
-  }, 1)
-}) 
-*/
-
-// criando mascara de moeda
 const Mask = {
   apply(input, func) {
       setTimeout(() => {
@@ -38,13 +18,15 @@ const Mask = {
     if(value.length > 14) value = value.slice(0, 14)
 
     if(value.length > 11) {
+        //11222333444455
         value = value.replace(/(\d{2})(\d)/, "$1.$2")
-        
+        //11.222333444455
         value = value.replace(/(\d{3})(\d)/, "$1.$2")
-        
+        //11.222.333444455
         value = value.replace(/(\d{3})(\d)/, "$1/$2")
-        
-        value = value.replace(/(\d{4})(\d)/, "$1-$2")            
+        //11.222.333/444455
+        value = value.replace(/(\d{4})(\d)/, "$1-$2")
+        //11.222.333/4444-55            
     } else {
         value = value.replace(/(\d{3})(\d)/, "$1.$2")
         
@@ -242,3 +224,25 @@ const Lightbox = {
         Lightbox.closeButton.style.top = "-80px"
     }
 }
+
+
+/*
+// format moeda
+const input = document.querySelector('input[name="price"]')
+input.addEventListener("keydown", function(e){
+   setTimeout(function(){
+    let { value } = e.target
+
+    value = value.replace(/\D/g,"")
+
+    value = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value/100)
+  
+    e.target.value = value
+  }, 1)
+}) 
+*/
+
+// criando mascara de moeda
