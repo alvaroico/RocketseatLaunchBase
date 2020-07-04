@@ -231,10 +231,20 @@ const Validate = {
       input.value = results.value
 
       if (results.error)
-        alert("Errooouuu!!!")
+        alert(results.error)
+    
+    //input.focus()
+
     },
     isEmail(value) {
         let error = null
+
+        const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+        if (!value.match(mailFormat))
+
+            error = "Email inválido"
+
         return {
             error,
             value
