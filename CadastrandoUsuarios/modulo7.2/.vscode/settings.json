@@ -9,6 +9,7 @@
     "launchstore",
     "lightbox",
     "middlewares",
+    "onblur",
     "onchange",
     "onclick",
     "onkeydown",
