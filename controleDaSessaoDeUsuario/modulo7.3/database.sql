@@ -74,3 +74,16 @@ EXECUTE PROCEDURE trigger_set_timestamp();
 INSERT INTO categories(name) VALUES ('Comida');
 INSERT INTO categories(name) VALUES ('Eletrônicos');
 INSERT INTO categories(name) VALUES ('Automóveis');
+
+-- Connect pg simple table
+
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+	"sess" json NOT NULL,
+	"expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE "session" ADD CONSTRAINT "session_pkey" PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE INDEX "IDX_session_expire" ON "session" ("expire");

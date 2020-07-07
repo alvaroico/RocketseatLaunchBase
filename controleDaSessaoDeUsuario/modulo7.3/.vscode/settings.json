@@ -16,6 +16,7 @@
     "onkeydown",
     "postgres",
     "producst",
+    "resave",
     "stylesheet"
   ],
   "editor.tabSize": 2
