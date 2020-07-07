@@ -12,7 +12,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - /home/alvaroico/GitHub/RocketseatLaunchBase/CadastrandoUsuarios/modulo7.2/PostgreSQL:/var/lib/postgresql/data 
+      - D:\Users\alvaroico\GitHub\RocketseatLaunchBase\CadastrandoUsuarios\modulo7.2\PostgreSQL:/var/lib/postgresql/data 
     
 
   adminer:
