@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "Lauch",
     "Promisse",
     "adminer",
     "browsersync",
@@ -14,7 +15,8 @@
     "onclick",
     "onkeydown",
     "postgres",
-    "producst"
+    "producst",
+    "stylesheet"
   ],
   "editor.tabSize": 2
 }

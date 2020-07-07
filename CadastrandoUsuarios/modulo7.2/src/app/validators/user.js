@@ -26,7 +26,10 @@ async function post (req,res,next){
    })
   
 
-   if (user) return res.send('Usuário ja existe')
+   if (user) return res.render('user/register', {
+     user: req.body,
+     error: 'Usuário já cadastrado.'
+   })
 
    // verificar se a senha bate
 
