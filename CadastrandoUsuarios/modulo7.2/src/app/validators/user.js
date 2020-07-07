@@ -10,7 +10,10 @@ async function post (req,res,next){
 
    for (key of keys) {
      if (req.body[key] == "") {
-       return res.send("Por favor preencha todos os dados");
+       return res.render('user/register', {
+        user: req.body,
+        error: 'Por favor preencha todos os dados'
+      })
      }
    }
 
@@ -34,7 +37,10 @@ async function post (req,res,next){
    // verificar se a senha bate
 
    if(password != passwordRepeat)
-     return res.send('Password nao idêntico')
+     return res.render('user/register', {
+      user: req.body,
+      error: 'Password nao idêntico'
+    })
    
    next()
 }
