@@ -5,7 +5,6 @@ const methodOverride = require('method-override')
 const session = require('./config/session')
 
 const server = express()
-
 server.use(session)
 
 server.use(express.urlencoded({ extended: true}))
