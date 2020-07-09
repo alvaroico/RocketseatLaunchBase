@@ -66,7 +66,7 @@ module.exports = {
           // ultima interação
           query = `${query}
               ${key} = '${fields[key]}'
-              WERE id = ${id}
+              WHERE id = ${id}
             `
         }
       })

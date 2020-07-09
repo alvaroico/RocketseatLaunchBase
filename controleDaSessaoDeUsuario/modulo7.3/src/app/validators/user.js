@@ -5,14 +5,11 @@ const { compare } = require('bcryptjs')
 function checkAllFields(body){
    // checar se os fields estão preenchidos
    const keys = Object.keys(body);
-
-    
   
-
    for (key of keys) {
-     if (req.body[key] == "") {
+     if (body[key] == "") {
        return {
-        user: req.body,
+        user: body,
         error: 'Por favor preencha todos os dados'
       }
      }
