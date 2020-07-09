@@ -20,13 +20,8 @@ module.exports = {
     return res.render("user/register")
   },
   async show(req, res){
-    const { userId: id} = req.session
-
-    const user = await User.findOne({where: {id}})
-
-    if(!user) return res.render("user/register", {
-      error: "Usuário não encontrado"
-    })
+    
+    const {user} = req
 
     user.cpf_cnpj = formatCpfCnpj(user.cpf_cnpj)
     user.cep = formatCep(user.cep)
@@ -44,7 +39,9 @@ module.exports = {
 
   },
   update(req, res){
-
+    // verificar todos os campos
+    // verificar se preencheu a senha
+    // password match 
   }
 }
 
