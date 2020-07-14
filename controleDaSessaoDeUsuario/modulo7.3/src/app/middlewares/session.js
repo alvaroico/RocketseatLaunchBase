@@ -4,7 +4,14 @@ function onlyUsers(req,res,next){
 
   next()
 }
+function isLoggedRedirectToUsers(req, res, next){
+  if (req.session.userId)
+    return res.redirect('/Users')
+
+  next()
+}
 
 module.exports = {
-  onlyUsers
+  onlyUsers,
+  isLoggedRedirectToUsers
 }
