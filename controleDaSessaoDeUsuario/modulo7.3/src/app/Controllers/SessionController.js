@@ -73,13 +73,6 @@ module.exports = {
     const { email, password, passwordRepeat, token } = req.body
 
     try{
-      // procura o usuário
-
-      // ver se a senha bate
-
-      // verificar se o token bate
-
-      // verificar se o token nao expirou
 
       // criar um novo hash de senha
 
