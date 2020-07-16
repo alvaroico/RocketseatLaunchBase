@@ -32,6 +32,8 @@ module.exports = {
     if (req.files.length == 0)
     return res.send('Por favor, envie pelo menos uma imagem')
 
+    req.body.user_id = req.session.userId
+
     let results = await Product.create(req.body);
     const productId = results.rows[0].id;
 
@@ -120,7 +122,7 @@ module.exports = {
       req.body.old_price = OldProduct.rows[0].price
     }
     await Product.update(req.body)
-
+ 
     return res.redirect(`/products/${req.body.id}`)
 
 
