@@ -1,0 +1,32 @@
+const Base = {
+  init({ table }) {
+    if(!table) throw new Error ('Parâmetro Invalido')
+
+    this.table = table
+
+    return this
+  },
+  async findOne(filters){
+
+    let query = `SELECT * FROM ${this.table}`
+
+    Object.keys(filters).map(key => {
+
+        // WHERE | OR | aND
+        query = `${query}
+        ${key}
+        `
+
+
+        Object.keys(filters[key]).map(field => {
+
+            query = `${query} ${field} = '${filters[key][field]}'`
+        })
+    })
+
+    const results = await db.query(query)
+    return results.rows[0]
+  },
+}
+
+module.exports = Base
