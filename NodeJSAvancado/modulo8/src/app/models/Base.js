@@ -4,19 +4,17 @@ function find(filters, table){
   
   let query = `SELECT * FROM ${table}`
 
-  if(filters){
+  if(filters) {
     Object.keys(filters).map(key => {
-
       // WHERE | OR | AND
       query += ` ${key}`
       Object.keys(filters[key]).map(field => {
-
           query += ` ${field} = '${filters[key][field]}'`
       })
     })
   }
 
-  return results = await db.query(query)
+  return db.query(query)
   
 }
 
@@ -43,17 +41,17 @@ const Base = {
 
     return results.rows
   },
-  async create(field){ //User.create({ name: 'Alvaro'})
+  async create(fields){ //User.create({ name: 'Alvaro'})
   try{
       let keys = [],
       values = []
 
-    Object.keys(field).map(key => {
+    Object.keys(fields).map(key => {
       keys.push(key)
-      values.push(fields[key])
+      values.push(`'${fields[key]}'`)
     })
     
-    const query = `INSERT INTRO ${this.table} (${keys.join(',')})
+    const query = `INSERT INTO ${this.table} (${keys.join(',')})
       VALUES (${values.join(',')})
       RETURNING id
     `

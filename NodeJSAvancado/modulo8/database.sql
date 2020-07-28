@@ -1,4 +1,5 @@
-CREATE TABLE "launchstoredb"
+DROP DATABASE IF EXISTS "launchstoredb"
+CREATE DATABASE "launchstoredb"
 
 CREATE TABLE "products" (
   "id" SERIAL PRIMARY KEY,
