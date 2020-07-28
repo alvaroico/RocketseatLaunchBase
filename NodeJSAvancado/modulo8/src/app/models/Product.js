@@ -1,4 +1,5 @@
 const Base = require('./Base')
+const { watch } = require('browser-sync')
 
 Base.init({ table: 'products' })
 
@@ -11,7 +12,7 @@ module.exports = {
 
     return results.rows
   },
-  search(params){
+  async search(params){
     const { filter, category } = params
     let query = ""
       filterQuery = `WHERE`
@@ -33,7 +34,9 @@ module.exports = {
       LEFT JOIN categories ON (categories.id = products.category_id)
       ${filterQuery}
     `
-  return db.query(query)
+  const results = await db.query(query)
+  return results.rows
+
   }
 }
 
