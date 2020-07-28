@@ -4,7 +4,8 @@ function find(filters, table){
   
   let query = `SELECT * FROM ${table}`
 
-  Object.keys(filters).map(key => {
+  if(filters){
+    Object.keys(filters).map(key => {
 
       // WHERE | OR | AND
       query += ` ${key}`
@@ -12,7 +13,8 @@ function find(filters, table){
 
           query += ` ${field} = '${filters[key][field]}'`
       })
-  })
+    })
+  }
 
   return results = await db.query(query)
   
