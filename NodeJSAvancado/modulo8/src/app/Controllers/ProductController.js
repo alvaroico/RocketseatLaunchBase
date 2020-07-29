@@ -1,5 +1,6 @@
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+const { unlinkSync } = require("fs");
 const File = require("../models/Files");
 
 const { formatPrice, date } = require("../../lib/utils");
@@ -155,7 +156,18 @@ module.exports = {
     }
   },
   async delete(req, res) {
+    const files = await Product.files(req.body.id)
     await Product.delete(req.body.id);
+
+
+    files.map((file) => {
+      try {
+        unlinkSync(file.path);
+      } catch (err) {
+        console.error(err);
+      }
+    });
+
     return res.redirect("/products/create");
   },
 };
