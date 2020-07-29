@@ -5,13 +5,14 @@ const { formatPrice } = require('../../lib/utils')
 
 module.exports = {
   async index(req, res) {
+    try {
     const products = await Product.findAll()
     
     if (!products) return res.send("Produto nao encontrado!")
 
     async function getImage(productId) {
       let files  = await Product.files(productId)
-      files = files.results.rows.map(file =>`${req.protocol}://${req.headers.host}/${file.path.replace("public", "")}`)
+      files = files.map(file =>`${req.protocol}://${req.headers.host}/${file.path.replace("public", "")}`)
 
       return files[0]
     }
@@ -26,6 +27,9 @@ module.exports = {
     const lastAdded = await Promise.all(productsPromise)
 
     return res.render("home/index", { products: lastAdded })
+  } catch (error) {
+    console.error(error);
+  }
   }
 
 }

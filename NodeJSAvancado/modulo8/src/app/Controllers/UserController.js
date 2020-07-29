@@ -25,7 +25,7 @@ module.exports = {
     try {
       let { name, email, password, cpf_cnpj, cep, address } = req.body;
 
-      const password = await hash(password, 8);
+      password = await hash(password, 8);
       cpf_cnpj = cpf_cnpj.replace(/\D/g, "");
       cep = cep.replace(/\D/g, "");
 

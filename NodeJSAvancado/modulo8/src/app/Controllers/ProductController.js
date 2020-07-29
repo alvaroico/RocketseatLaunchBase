@@ -7,7 +7,7 @@ const { formatPrice, date } = require("../../lib/utils");
 module.exports = {
   async create(req, res) {
     try {
-      const categories = await Category.findAll;
+      const categories = await Category.findAll();
       return res.render("products/create", { categories });
     } catch (error) {
       console.error(error);
@@ -27,7 +27,7 @@ module.exports = {
         return res.send("Por favor, envie pelo menos uma imagem");
       let { category_id, name, description, old_price, price, quantity, status } = req.body
 
-      price = price.replace(/\D/g, "");
+      price = price.replace(/\D/g,"");
 
       const product_id = await Product.create({
         category_id, 
@@ -41,11 +41,11 @@ module.exports = {
       })
 
       const filesPromise = req.files.map((file) =>
-        File.create({ ...file, product_id })
-      );
+        File.create({ name: file.filename, path: file.path, product_id }));
       await Promise.all(filesPromise);
 
-      return res.redirect(`products/${productId}/edit`);
+      return res.redirect(`products/${product_id}/edit`);
+
     } catch (error) {
       console.error(error);
     }

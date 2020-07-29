@@ -1,5 +1,5 @@
+const db = require('../../config/db')
 const Base = require('./Base')
-const { watch } = require('browser-sync')
 
 Base.init({ table: 'products' })
 
